@@ -1,2 +1,2 @@
 # Dusk
-Pathtracer based off Peter Shirley
+Pathtracer based off that of Peter Shirley's http://www.realtimerendering.com/raytracing/Ray%20Tracing%20in%20a%20Weekend.pdf
