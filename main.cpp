@@ -185,22 +185,28 @@ void test_vec3(){
     v1[2] = 8.09;
     std::cout <<  "v1[0] " << v1[0] << " v1[1] " << v1[1] << " v1[2] " << v1[2] << std::endl;
 
+
+    
+    v1[0] = 2.0;
+    v1[1] = 0.0;
+    v1[2] = 1.0;
+
+    std::cout << "v1 is " << v1 << std::endl;
+
+    len = v1.length();
+    std::cout << "The length is " << len << std::endl;
+
+    vec3 unit_vec = unit_vector(v1);
+    std::cout << "Unit vector " << unit_vec << std::endl;
+
+    len = unit_vec.length();
+    std::cout << "The unit length is " << len << std::endl;
+
 }
 
 
-int main(){
+void test_ray() {
 
-    //check_version_cpp();
-
-    //write_test_ppm();
-
-    //write_test_ppm_vec3();
-
-    //test_vec3();
-
-    //ray test_ray;
-    //std::cout << "Testing ray origin ... "<< test_ray.o << std::endl;
-    //std::cout << "Testing ray direction ... "<< test_ray.d << std::endl;
     vec3 origin(1.0, 2.0, 3.0);
     vec3 direction(1.1, 2.1, 3.1);
 
@@ -214,6 +220,22 @@ int main(){
 
     point_test1 = test_ray.point_at_parameter(10);
     std::cout << "point test " << point_test1 << std::endl;
+
+}
+
+
+int main(){
+
+    //check_version_cpp();
+
+    //write_test_ppm();
+
+    //write_test_ppm_vec3();
+
+    test_vec3();
+
+    //test_ray();
+
 
     return 0;
     

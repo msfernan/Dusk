@@ -6,8 +6,7 @@
 #include <stdlib.h>
 #include <iostream>
 
-class vec3
-{
+class vec3{
 
 public:
     vec3() {
@@ -67,6 +66,8 @@ std::ostream& operator<<(std::ostream &os, const vec3 &v);
 float dot(const vec3 &v1, const vec3 &v2);
 
 vec3 cross(const vec3 &v1, const vec3 &v2);
+
+vec3 unit_vector(const vec3 &v1);
 
 vec3 operator*(const vec3 &v1, const vec3 &v2);
 
