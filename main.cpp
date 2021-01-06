@@ -137,6 +137,13 @@ void test_vec3(){
 
     std::cout <<  "Testing vector output " << v1 << std::endl;
 
+    std::cout <<  "v1[0] " << v1[0] << " v1[1] " << v1[1] << " v1[2] " << v1[2] << std::endl;
+
+    v1[0] = 9.0;
+    v1[1] = 8.0;
+    v1[2] = 8.09;
+    std::cout <<  "v1[0] " << v1[0] << " v1[1] " << v1[1] << " v1[2] " << v1[2] << std::endl;
+
 }
 
 
