@@ -70,11 +70,19 @@ vec3 cross(const vec3 &v1, const vec3 &v2);
 
 vec3 operator*(const vec3 &v1, const vec3 &v2);
 
+vec3 operator*(const vec3 &v1, float t);
+
+vec3 operator*(float t, const vec3 &v1);
+
 vec3 operator+(const vec3 &v1, const vec3 &v2);
 
 vec3 operator-(const vec3 &v1, const vec3 &v2);
 
 vec3 operator/(const vec3 &v1, const vec3 &v2);
+
+vec3 operator/(const vec3 &v1, float t);
+
+vec3 operator/(float t, const vec3 &v1);
 
 
 

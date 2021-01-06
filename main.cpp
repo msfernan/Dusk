@@ -3,6 +3,7 @@
 
 #include "vec3.h"
 
+#include "ray.h"
 
 void check_version_cpp(){
 
@@ -54,6 +55,46 @@ void write_test_ppm(){
     } 
 
 }
+
+void write_test_ppm_vec3(){
+
+    int nx = 200;
+    int ny = 100;
+
+
+    std::ofstream ofs;
+
+
+    try {
+
+        ofs.open("test_vec3.ppm", std::ios::binary);
+
+        ofs << "P3 \n" << nx << " " << ny << "\n255\n";
+
+        for(int j = ny - 1; j >= 0; j--) {
+            for(int i = 0; i < nx; i++) {
+
+                vec3 col(float(i) / float(nx), float(j) / float(ny), 0.2);
+                int ir = int(255.99 * col[0]);
+                int ig = int(255.99 * col[1]);
+                int ib = int(255.99 * col[2]);
+
+                ofs << ir << " " << ig << " " << ib << "\n";
+
+            }
+
+        }
+
+        ofs.close(); 
+    }
+
+    catch (const char *err) { 
+        fprintf(stderr, "%s\n", err); 
+        ofs.close(); 
+    } 
+
+}
+
 
 
 
@@ -153,11 +194,28 @@ int main(){
 
     //write_test_ppm();
 
-    test_vec3();
+    //write_test_ppm_vec3();
+
+    //test_vec3();
+
+    //ray test_ray;
+    //std::cout << "Testing ray origin ... "<< test_ray.o << std::endl;
+    //std::cout << "Testing ray direction ... "<< test_ray.d << std::endl;
+    vec3 origin(1.0, 2.0, 3.0);
+    vec3 direction(1.1, 2.1, 3.1);
+
+    ray test_ray(origin, direction);
+    std::cout << "Testing ray origin ... "<< test_ray.o << std::endl;
+    std::cout << "Testing ray direction ... "<< test_ray.d << std::endl;
+
+    vec3 point_test1;
+    point_test1 = test_ray.point_at_parameter(1);
+    std::cout << "point test " << point_test1 << std::endl;
+
+    point_test1 = test_ray.point_at_parameter(10);
+    std::cout << "point test " << point_test1 << std::endl;
 
     return 0;
     
- 
-
 
 }
