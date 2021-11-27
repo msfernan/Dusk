@@ -1,5 +1,4 @@
-#ifndef VEC3
-#define VEC3
+#pragma once
 
 
 #include <math.h>
@@ -48,7 +47,7 @@ public:
         return sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
     }
 
-    inline float squared_length() const {
+    inline float length_squared() const {
         return (e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
     }
 
@@ -59,6 +58,9 @@ private:
 
 };
 
+//Type aliases for vec3
+using color = vec3;
+using point3 = vec3;
 
 std::ostream& operator<<(std::ostream &os, const vec3 &v);
 
@@ -85,6 +87,3 @@ vec3 operator/(const vec3 &v1, float t);
 
 vec3 operator/(float t, const vec3 &v1);
 
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef RAY_H
-#define RAY_H
+#pragma once
 
 #include "vec3.h"
 
@@ -16,14 +15,24 @@ class ray {
            d = direction;
        };
 
-       inline vec3 point_at_parameter(const float t) {
+       inline vec3 point_at_parameter(const float t) const{
              return o + ( d * t);
-        }
+       }
 
+       inline vec3 origin() const{
+            return o;
+       }
+
+       inline vec3 direction() const {
+            return d;
+       }
+
+       inline vec3 at(double t) const {
+            return o + t * d;
+       }
+
+    private:
         vec3 o; //This is the origin of the ray
         vec3 d; //This is the direction of the ray
 
 };
-
-
-#endif
