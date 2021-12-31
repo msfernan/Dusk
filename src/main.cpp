@@ -383,7 +383,7 @@ void write_test_ppm_ray_focal() {
 
 int main(){
 
-    check_version_cpp();
+    //check_version_cpp();
 
     //write_test_ppm();
 
@@ -399,7 +399,7 @@ int main(){
     //write_test_ppm_color();
 
     
-    //write_test_ppm_ray_focal();
+    write_test_ppm_ray_focal();
 
 
 
