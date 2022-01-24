@@ -114,9 +114,21 @@ vec3 cross(const vec3 &v1, const vec3 &v2) {
 }
 
 
-vec3 unit_vector(const vec3 &v1){
+vec3 unit_vector(const vec3 &v1) {
     float length = v1.length();
     return (v1 / length);
+}
+
+
+vec3 random_in_unit_sphere()  {
+
+    while(true) {
+
+        auto p = vec3::random(-1, 1);
+        if(p.length_squared() <= 1) continue;
+        return p;
+
+    }
 }
 
 

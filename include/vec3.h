@@ -52,6 +52,27 @@ public:
     }
 
 
+    //local versions for use in vector class
+
+    inline static double random_double() {
+        // Returns a random real in [0,1).
+        return rand() / (RAND_MAX + 1.0);
+     }
+
+    inline static double random_double(double min, double max) {
+        // Returns a random real in [min,max).
+        return min + (max - min) * random_double();
+     }
+
+    inline static vec3 random() {
+        return vec3(random_double(), random_double(), random_double());
+    }
+
+    inline static vec3 random(double min, double max) {
+        return vec3(random_double(min, max), random_double(min, max), random_double(min, max));
+    }
+
+
 private:
 
     float e[3];
@@ -87,3 +108,4 @@ vec3 operator/(const vec3 &v1, float t);
 
 vec3 operator/(float t, const vec3 &v1);
 
+vec3 random_in_unit_sphere(); 
