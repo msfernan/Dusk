@@ -369,24 +369,13 @@ void write_test_ppm_ray_focal() {
 int main(){
 
     //check_version_cpp();
-
     //write_test_ppm();
-
     //write_test_ppm_vec3();
-
     //write_test_ppm_ray();
-
     //test_vec3();
-
-
     //test_ray();
 
-    //write_test_ppm_color();
-
-    
     write_test_ppm_ray_focal();
-
-
 
     return 0;
     
