@@ -286,38 +286,6 @@ void test_ray() {
 
 }
 
-double hit_sphere(const point3& center, double radius, const ray &r) {
-    vec3 oc = (r.origin() - center);
-    auto a = dot(r.direction(), r.direction());
-    auto b = 2.0 * dot(r.direction(), oc);
-    auto c = dot(oc, oc) - (radius * radius);
-    auto discriminant = (b * b) - (4 * a * c);
-    
-    if(discriminant < 0) {
-        return -1.0;
-    }
-    else {
-        return ((- b - sqrt(discriminant)) / (2.0 * a)); //Return for visualizing normal
-    }
-}
-
-
-color ray_color(const ray &r) {
-
-    auto t = hit_sphere(point3(0, 0, -1), 0.5, r);
-    if(t > 0.0) { 
-        vec3 N = unit_vector(r.point_at_parameter(t) - vec3(0, 0, -1)); //get unit vector at intersection point
-        return 0.5 * color(N.x() + 1, N.y() + 1, N.z() + 1); //Move vector to 0 -1 range
-    }
-    //if (hit_sphere(point3(0, 0, +1), 0.5, r))
-        //return color(1, 0, 0);
-
-    //DEFAULT color
-    vec3 unit_direction = unit_vector(r.direction());
-    t = 0.5 * (unit_direction.y() + 1.0); //Move vector 0 to 1 range
-    return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0); //Interpolate color
-}
-
 
 color ray_color(const ray &r, const hittable_list& world, int depth) {
     hit_record rec;
