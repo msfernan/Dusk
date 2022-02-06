@@ -332,13 +332,18 @@ color ray_color(const ray &r, const hittable_list& world, int depth) {
                                      //or some offset or this ray will be considered as a shadow and we will have shelf shadow.
     if(world.hit(r, shadowAcneOffset, infinity, rec)) {
         //return 0.5 * (rec.normal + color(1, 1, 1));
-        point3 target = rec.p + rec.normal + random_in_unit_sphere();
+
+        //Diffuse 1 : shoot a ray from the point of reflection plus the normal + some random vector in the unit sphere
+        //point3 target = rec.p + rec.normal + random_in_unit_sphere();
+
+        //Diffuse 2: shoot a ray from the point of reflection , uniform scatter pattern no dependence on normal
+        point3 target = rec.p + random_in_hemisphere(rec.normal);
         return 0.5 * ray_color(ray(rec.p, target - rec.p) , world, depth - 1);
     }
 
     vec3 unit_direction = unit_vector(r.direction());
     auto t = 0.5 * (unit_direction.y() + 1.0);
-    return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
+    return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0); //lerp between blue and white based on y direction normalized 0 - 1
 }
 
 

@@ -109,3 +109,5 @@ vec3 operator/(const vec3 &v1, float t);
 vec3 operator/(float t, const vec3 &v1);
 
 vec3 random_in_unit_sphere(); 
+
+vec3 random_in_hemisphere(const vec3& normal);
