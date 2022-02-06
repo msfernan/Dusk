@@ -327,7 +327,10 @@ color ray_color(const ray &r, const hittable_list& world, int depth) {
         return color(0, 0, 0);
     }
 
-    if(world.hit(r, 0, infinity, rec)) {
+    double shadowAcneOffset = 0.001; //When a ray reflects off a surface, its origin is at t = 0. 
+                                     //We want to ignore this as a hit and due to floating point offset should ignore from t = 0.001
+                                     //or some offset or this ray will be considered as a shadow and we will have shelf shadow.
+    if(world.hit(r, shadowAcneOffset, infinity, rec)) {
         //return 0.5 * (rec.normal + color(1, 1, 1));
         point3 target = rec.p + rec.normal + random_in_unit_sphere();
         return 0.5 * ray_color(ray(rec.p, target - rec.p) , world, depth - 1);
