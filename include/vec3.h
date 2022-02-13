@@ -119,3 +119,5 @@ vec3 random_in_unit_sphere();
 vec3 random_in_hemisphere(const vec3& normal);
 
 vec3 random_unit_vector();
+
+vec3 reflect(const vec3& v, const vec3& n);
