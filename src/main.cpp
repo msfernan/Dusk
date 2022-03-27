@@ -107,7 +107,6 @@ void write_test_ppm_vec3(){
 
 }
 
-
 void write_test_ppm_ray(){
 
     int nx = 200;
@@ -156,9 +155,6 @@ void write_test_ppm_ray(){
     } 
 
 }
-
-
-
 
 //In order to use do ./a.out > testimage.ppm.
 //WARN: Command line cant print out anything else to std::cout 
@@ -319,6 +315,27 @@ color ray_color(const ray &r, const hittable_list& world, int depth) {
 }
 
 
+hittable_list random_scene()
+{
+    hittable_list world;
+
+    //Materials
+    auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
+    //auto material_center = make_shared<dielectric>(1.5);
+    auto material_left   = make_shared<dielectric>(1.5);
+    auto material_right  = make_shared<metal>(color(0.8, 0.6, 0.2), 1.0);
+
+
+    //World
+    world.add(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
+    //world.add(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
+    world.add(make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, material_left));
+    world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right));
+
+    return world;
+}
+
+
 //Function to write to a ppm image
 void write_test_ppm_ray_focal() {
 
@@ -326,23 +343,10 @@ void write_test_ppm_ray_focal() {
     const auto aspect_ratio = 16.0 / 9.0;
     const int image_width = 400;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel  = 100;
+    const int samples_per_pixel  = 10;
     const int max_depth = 50;
 
-    //Materials
-    auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
-    auto material_center = make_shared<lambertian>(color(0.7, 0.3, 0.3));
-    auto material_left   = make_shared<metal>(color(0.8, 0.8, 0.8), 0.3);
-    auto material_right  = make_shared<metal>(color(0.8, 0.6, 0.2), 1.0);
-
-
-    //World
-    hittable_list world;
-    world.add(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
-    world.add(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
-    world.add(make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, material_left));
-    world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right));
-
+    auto world = random_scene();
 
     // Camera
     camera cam;
@@ -365,8 +369,8 @@ void write_test_ppm_ray_focal() {
             color pixel_color(0, 0, 0);
             for(int s = 0; s < samples_per_pixel; ++s)
             {
-                 auto u  = double(i + random_double()) / (image_width  - 1);
-                 auto v  = double(j + random_double()) / (image_height - 1);
+                 auto u  = (i + random_double()) / (image_width  - 1);
+                 auto v  = (j + random_double()) / (image_height - 1);
                  ray r = cam.get_ray(u, v);
                  pixel_color += ray_color(r, world, max_depth);
             }

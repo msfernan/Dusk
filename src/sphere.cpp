@@ -34,7 +34,5 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record &rec) cons
     rec.set_face_normal(r, outward_normal);
     rec.mat_ptr = mat_ptr;
 
-    rec.normal = (rec.p - center) / radius; //Get the unit vector at the point of intersection
-
     return true;
 }
