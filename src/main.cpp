@@ -319,18 +319,15 @@ hittable_list random_scene()
 {
     hittable_list world;
 
-    //Materials
     auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
     auto material_center = make_shared<lambertian>(color(0.1, 0.2, 0.5));
     auto material_left   = make_shared<dielectric>(1.5);
     auto material_right  = make_shared<metal>(color(0.8, 0.6, 0.2), 0.0);
 
-
-    //World
     world.add(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
     world.add(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
     world.add(make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, material_left));
-    world.add(make_shared<sphere>(point3(-1.0,    0.0, -1.0),  -0.4, material_left));
+    world.add(make_shared<sphere>(point3(-1.0,    0.0, -1.0), -0.45, material_left));
     world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right));
 
     return world;
@@ -350,7 +347,7 @@ void write_test_ppm_ray_focal() {
     auto world = random_scene();
 
     // Camera
-    camera cam;
+    camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 90, aspect_ratio);
 
     /*auto viewport_height = 2.0;
     auto viewport_width = aspect_ratio * viewport_height;
