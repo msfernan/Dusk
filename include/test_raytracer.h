@@ -1,10 +1,6 @@
 #pragma once
 
 #include "rtweekend.h"
-#include "camera.h"
-#include "hittable_list.h"
-#include "sphere.h"
-#include "moving_sphere.h"
 #include "test_raytracer.h"
 
 void check_version_cpp();
