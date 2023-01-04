@@ -162,14 +162,14 @@ void render_scene() {
 
 int main(){
 
-    check_version_cpp();
-    write_test_ppm();
+    //check_version_cpp();
+    //write_test_ppm();
     //write_test_ppm_vec3();
     //write_test_ppm_ray();
     //test_vec3();
     //test_ray();
 
-    //render_scene();
+    render_scene();
 
     return 0;
     
