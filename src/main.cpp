@@ -291,7 +291,7 @@ color ray_color(const ray &r, const hittable_list& world, int depth) {
 
     double shadowAcneOffset = 0.001; //When a ray reflects off a surface, its origin is at t = 0. 
                                      //We want to ignore this as a hit and due to floating point offset should ignore from t = 0.001
-                                     //or some offset or this ray will be considered as a shadow and we will have shelf shadow.
+                                     //or some offset or this ray will be considered as a shadow and we will have self shadow.
     if(world.hit(r, shadowAcneOffset, infinity, rec)) {
         //return 0.5 * (rec.normal + color(1, 1, 1));
 
@@ -380,7 +380,7 @@ hittable_list random_scene()
 
 
 //Function to write to a ppm image
-void write_test_ppm_ray_focal() {
+void render_scene() {
 
     // Image
     const auto aspect_ratio = 16.0 / 9.0;
@@ -443,7 +443,7 @@ int main(){
     //test_vec3();
     //test_ray();
 
-    write_test_ppm_ray_focal();
+    render_scene();
 
     return 0;
     
